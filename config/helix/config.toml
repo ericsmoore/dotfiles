@@ -1,0 +1,46 @@
+theme = "gruvbox-material"
+
+# Editing Config
+[editor]
+bufferline = "multiple"
+line-number = "relative"
+auto-completion = false
+completion-trigger-len = 2
+gutters = ["diagnostics", "line-numbers", "spacer", "spacer"]
+
+rulers = [80]
+[editor.soft-wrap] 
+wrap-at-text-width = true
+wrap-indicator = ""
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["file-name", "spacer",
+        "version-control",
+        "read-only-indicator",
+        "file-modification-indicator"]
+
+# LSP / Diagnostics Config
+[editor.lsp]
+auto-signature-help = false
+[editor.inline-diagnostics]
+max-diagnostics = 5
+cursor-line = "warning"
+
+# Bindings
+[keys.normal]
+"tab" = "goto_word"
+S-j = "@4j"
+S-k = "@4k"
+
+[keys.normal.space]
+"F" = "file_picker_in_current_buffer_directory"
+"m" = "@:cd <C-r>%<C-w><ret>"
+
+[keys.normal."backspace"]
+"c" = ":set auto-completion true"
+"C" = ":set auto-completion false"

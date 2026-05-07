@@ -1,0 +1,13 @@
+[language-server.hx-lsp]
+command = "hx-lsp"
+
+[[language]]
+name = "markdown"
+file-types = ["md", "markdown", "txt", ""]
+soft-wrap.enable = true
+text-width = 80
+
+[[language]]
+name = "latex"
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["texlab", "hx-lsp"]

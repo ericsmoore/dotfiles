@@ -1,0 +1,125 @@
+{
+  "Begin End": {
+    "prefix": "beg",
+    "body": [
+      "\\begin{${1:env}}",
+      "  $0",
+      "\\end{${1:env}}"
+    ]
+  },
+
+  "Align": {
+    "prefix": "ali",
+    "body": [
+      "\\begin{align*}",
+      "  $0",
+      "\\end{align*}"
+    ]
+  },
+
+  "Fraction": {
+    "prefix": "frac",
+    "body": ["\\frac{${1}}{${2}}$0"]
+  },
+
+  "Ceil": {
+    "prefix": "ceil",
+    "body": ["\\left\\lceil ${1} \\right\\rceil"]
+  },
+
+  "Floor": {
+    "prefix": "floor",
+    "body": ["\\left\\lfloor ${1} \\right\\rfloor"]
+  },
+
+  "Left Right Parentheses": {
+    "prefix": "lr",
+    "body": ["\\left(${1}\\right)"]
+  },
+
+  "Norm": {
+    "prefix": "norm",
+    "body": ["\\|${1}\\|"]
+  },
+
+  "Sum": {
+    "prefix": "sum",
+    "body": ["\\sum_{${1:n=1}}^{${2:\\infty}} ${3}$0"]
+  },
+
+  "Limit": {
+    "prefix": "lim",
+    "body": ["\\lim_{${1:n} \\to ${2:\\infty}} $0"]
+  },
+
+  "Vector": {
+    "prefix": "vec",
+    "body": ["\\vec{${1}}$0"]
+  },
+
+  "Cases": {
+    "prefix": "cases",
+    "body": [
+      "\\begin{cases}",
+      "  ${1}",
+      "\\end{cases}"
+    ]
+  },
+
+  "Matrix 2x2": {
+    "prefix": "mat2",
+    "body": [
+      "\\begin{pmatrix}",
+      "  ${1} & ${2} \\\\",
+      "  ${3} & ${4}",
+      "\\end{pmatrix}"
+    ]
+  },
+
+  "Matrix 3x3": {
+    "prefix": "mat3",
+    "body": [
+      "\\begin{pmatrix}",
+      "  ${1} & ${2} & ${3} \\\\",
+      "  ${4} & ${5} & ${6} \\\\",
+      "  ${7} & ${8} & ${9}",
+      "\\end{pmatrix}"
+    ]
+  },
+
+  "Itemize": {
+    "prefix": "item",
+    "body": [
+      "\\begin{itemize}",
+      "  \\item $0",
+      "\\end{itemize}"
+    ]
+  },
+
+  "Enumerate": {
+    "prefix": "enum",
+    "body": [
+      "\\begin{enumerate}",
+      "  \\item $0",
+      "\\end{enumerate}"
+    ]
+  },
+
+  "Theorem": {
+    "prefix": "thrm",
+    "body": [
+      "\\begin{theorem}[${1}]",
+      "  ${2}",
+      "\\end{theorem}"
+    ]
+  },
+
+  "Proof": {
+    "prefix": "prf",
+    "body": [
+      "\\begin{proof}",
+      "  ${1}",
+      "\\end{proof}"
+    ]
+  }
+}
