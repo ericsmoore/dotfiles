@@ -57,6 +57,10 @@ alias activate='source .venv/bin/activate'
 alias processing='/Applications/Processing.app/Contents/MacOS/Processing cli'
 alias tec='tectonic'
 
+alias info='fastfetch'
+alias cinfo='clear && info'
+
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias bat='acpi'
   alias p='wl-paste'
@@ -64,11 +68,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias tmux='TERM=xterm-256color tmux'
   alias wifion='nmcli radio wifi on'
   alias wifioff='nmcli radio wifi off'
-  alias info='fastfetch'
+
+  if [[ -z "$TMUX" ]]; then
+    fastfetch
+  fi
 fi
 
 eval "$(zoxide init zsh --cmd c)"
 
-if [[ -z "$TMUX" ]]; then
-  fastfetch
-fi
