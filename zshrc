@@ -29,10 +29,13 @@ bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^H' backward-delete-char
 export KEYTIMEOUT=1
 
+alias _='sudo'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+alias ls='ls --color=auto'
 alias l='ls -l'
 alias la='ls -la'
 alias lh='ls -ld .*'
@@ -45,7 +48,7 @@ alias gp='git push'
 alias gl='git log --oneline --graph --decorate'
 
 alias md='mkdir'
-alias grep='grep -E'
+alias grep='grep -E --color=auto'
 
 alias cloud='~/Library/Mobile\ Documents/com~apple~CloudDocs'
 
@@ -54,4 +57,18 @@ alias activate='source .venv/bin/activate'
 alias processing='/Applications/Processing.app/Contents/MacOS/Processing cli'
 alias tec='tectonic'
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  alias bat='acpi'
+  alias p='wl-paste'
+  alias y='wl-paste'
+  alias tmux='TERM=xterm-256color tmux'
+  alias wifion='nmcli radio wifi on'
+  alias wifioff='nmcli radio wifi off'
+  alias info='fastfetch'
+fi
+
 eval "$(zoxide init zsh --cmd c)"
+
+if [[ -z "$TMUX" ]]; then
+  fastfetch
+fi
