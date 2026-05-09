@@ -1,7 +1,8 @@
-theme = "gruvbox-material"
+theme = "autumn_night"
 
 # Editing Config
 [editor]
+true-color = true
 bufferline = "multiple"
 line-number = "relative"
 auto-completion = false
