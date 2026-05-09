@@ -1,0 +1,36 @@
+
+# Colors (Ashen Modified)
+# Original Author: Daniel Fichtinger
+# License: MIT
+
+# Default Colors
+[colors.primary]
+background = '#000000' # Original (#121212)
+foreground = '#f5f5f5'
+
+# Selection Colors
+[colors.cursor]
+cursor = '#f5f5f5'
+text = '#121212'
+
+# Normal Colors
+[colors.normal]
+black = '#000000'
+red = '#B14242'
+green = '#759E4A'
+yellow = '#D87C4A'
+blue = '#4A8BB0'
+magenta = '#E49A44'
+cyan = '#4A8B8B'
+white = '#d5d5d5'
+
+# Bright Colors
+[colors.bright]
+black = '#000000'
+red = '#B14242'
+green = '#759E4A'
+yellow = '#D87C4A'
+blue = '#4A8BB0'
+magenta = '#E49A44'
+cyan = '#4A8B8B'
+white = '#d5d5d5'
