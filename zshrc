@@ -35,7 +35,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias ls='ls --color=auto'
+alias ls='eza'
 alias l='ls -l'
 alias la='ls -la'
 alias lh='ls -ld .*'
@@ -48,6 +48,7 @@ alias gp='git push'
 alias gl='git log --oneline --graph --decorate'
 
 alias md='mkdir'
+alias ff='fzf'
 alias grep='grep -E --color=auto'
 
 alias cloud='~/Library/Mobile\ Documents/com~apple~CloudDocs'
@@ -74,5 +75,5 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   fi
 fi
 
-eval "$(zoxide init zsh --cmd c)"
+eval "$(zoxide init zsh --cmd cd)"
 
