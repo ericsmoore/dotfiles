@@ -1,10 +1,11 @@
-theme = "autumn_night"
+theme = "ashen"
 
 # Editing Config
 [editor]
 true-color = true
 bufferline = "multiple"
 line-number = "relative"
+auto-format = false
 auto-completion = false
 completion-trigger-len = 2
 gutters = ["diagnostics", "line-numbers", "spacer", "spacer"]
