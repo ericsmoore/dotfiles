@@ -1,16 +1,12 @@
-HISTFILE=~/.cache/zsh/.zsh_history
+HISTFILE="$HOME/.cache/zsh/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 setopt HIST_IGNORE_DUPS
-SHELL_SESSIONS_DISABLE=1
 setopt SHARE_HISTORY
 
 autoload -Uz compinit
 compinit -d "$HOME/.cache/zsh/zcompdump"
-zstyle ':completion:*' matcher-list \
-  'm:{a-z}={A-Z}' \
-  'm:{A-Z}={a-z}' \
-  'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
 
 autoload -Uz vcs_info
@@ -21,56 +17,12 @@ setopt PROMPT_SUBST
 
 PROMPT='%~ %F{242}${vcs_info_msg_0_}%f: '
 
-setopt AUTO_CD
-export CLICOLOR=1
-
 bindkey -v
 bindkey -M viins '^?' backward-delete-char
-bindkey -M viins '^H' backward-delete-char
 export KEYTIMEOUT=1
 
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
+export EZA_CONFIG_DIR="$HOME/.config/eza/"
 
-alias ls='eza'
-alias l='ls -l'
-alias la='ls -la'
-alias lh='ls -ld .*'
-
-alias gst='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gch='git checkout'
-alias gp='git push'
-alias gl='git log --oneline --graph --decorate'
-alias gd='git diff'
-
-alias md='mkdir'
-alias ff='fzf'
-alias grep='grep -E --color=auto'
-
-alias mvenv='python3 -m venv .venv'
-alias activate='source .venv/bin/activate'
-alias tec='tectonic'
-
-alias info='fastfetch'
-alias cinfo='clear && info'
-
-if [[ "$OSTYPE" == 'linux-gnu'* ]]; then
-  alias bat='acpi'
-  alias p='wl-paste'
-  alias y='wl-copy'
-  alias tmux='TERM=xterm-256color tmux'
-  alias wifion='nmcli radio wifi on'
-  alias wifioff='nmcli radio wifi off'
-
-  if [[ -z "$TMUX" ]]; then
-    fastfetch
-  fi
-elif [[ "$OSTYPE" == 'darwin'* ]]; then
-  alias cloud='~/Library/Mobile\ Documents/com~apple~CloudDocs'
-  alias processing='/Applications/Processing.app/Contents/MacOS/Processing cli'
-fi
+source "$HOME/.config/shell/aliases.sh" 
 
 eval "$(zoxide init zsh --cmd cd)"
