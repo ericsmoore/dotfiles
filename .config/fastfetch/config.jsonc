@@ -6,13 +6,13 @@
     },
     "position": "right",
     "color": {
-      "1": "blue", 
+      "1": "38;2;177;66;66", 
     },
   },
   "display": {
     "color": {
+      "title": "38;2;177;66;66",
       "keys": "dim_white",
-      "title": "blue",
     },
   },
   "modules": [
