@@ -22,7 +22,7 @@ alias info='fastfetch'
 alias cinfo='clear && info'
 
 if [[ "$OSTYPE" == 'linux-gnu'* ]]; then
-  alias bat='acpi'
+  alias batt='acpi'
   alias p='wl-paste'
   alias y='wl-copy'
   alias tmux='TERM=xterm-256color tmux'
