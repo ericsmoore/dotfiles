@@ -1,8 +1,7 @@
-alias ls='eza -X'
+alias ls='eza -X --no-user'
 alias lsa='ls -Ga'
 alias l='ls -l'
 alias la='ls -la'
-alias lh='ls -ld .*'
 
 alias gst='git status'
 alias ga='git add'
