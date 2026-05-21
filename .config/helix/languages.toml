@@ -3,11 +3,22 @@ command = "hx-lsp"
 
 [[language]]
 name = "markdown"
-file-types = ["md", "markdown", "txt", ""]
+# language-servers = ["markdown-oxide", "marksman"]
+file-types = ["md", "markdown", "txt"]
 soft-wrap.enable = true
 text-width = 80
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'<' = '>' # for hugo shortcodes
 
 [[language]]
 name = "latex"
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["texlab", "hx-lsp"]
+
+[[language]]
+name = "bash"
+indent = { tab-width = 4, unit = "    " }

@@ -1,14 +1,14 @@
 theme = "ashen"
 
-# Editing Config
+# Editor Config
 [editor]
 true-color = true
 bufferline = "multiple"
 line-number = "relative"
 auto-format = false
 auto-completion = false
-completion-trigger-len = 2
 gutters = ["diagnostics", "line-numbers", "spacer", "spacer"]
+clipboard-provider = "pasteboard"
 
 rulers = [80]
 [editor.soft-wrap] 
@@ -42,7 +42,3 @@ S-k = "@4k"
 [keys.normal.space]
 "F" = "file_picker_in_current_buffer_directory"
 "m" = "@:cd <C-r>%<C-w><ret>"
-
-[keys.normal."backspace"]
-"c" = ":set auto-completion true"
-"C" = ":set auto-completion false"

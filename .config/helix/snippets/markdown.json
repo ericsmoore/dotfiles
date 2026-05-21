@@ -1,0 +1,12 @@
+{
+  "Hugo Front Matter": {
+    "prefix": "frontmat",
+    "body": [
+      "---",
+      "Title: $1",
+      "Subtitle: $2",
+      "Date: $3",
+      "---"
+    ]
+  }
+}
