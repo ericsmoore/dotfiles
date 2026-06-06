@@ -1,13 +1,15 @@
 theme = "ashen"
 
-# Editor Config
 [editor]
-true-color = true
 bufferline = "multiple"
 line-number = "relative"
+continue-comments = false
+
 auto-format = false
 auto-completion = false
 gutters = ["diagnostics", "line-numbers", "spacer", "spacer"]
+
+default-yank-register = "+"
 clipboard-provider = "pasteboard"
 
 rulers = [80]
@@ -26,19 +28,38 @@ left = ["file-name", "spacer",
         "read-only-indicator",
         "file-modification-indicator"]
 
-# LSP / Diagnostics Config
 [editor.lsp]
 auto-signature-help = false
 [editor.inline-diagnostics]
 max-diagnostics = 5
 cursor-line = "warning"
 
-# Bindings
+# ---------Bindings---------
 [keys.normal]
 "tab" = "goto_word"
+"}" = ["goto_next_paragraph"]
+"{" = ["goto_prev_paragraph"]
 S-j = "@4j"
 S-k = "@4k"
+ret = ":w"
 
 [keys.normal.space]
 "F" = "file_picker_in_current_buffer_directory"
 "m" = "@:cd <C-r>%<C-w><ret>"
+"=" = ":toggle auto-completion"
+ret = ":toggle insert-final-newline"
+"l" = ":reflow"
+
+[keys.select]
+"}" = ["goto_next_paragraph"]
+"{" = ["goto_prev_paragraph"]
+S-j = "@4j"
+S-k = "@4k"
+ret = ":w"
+
+[keys.select.space]
+"F" = "file_picker_in_current_buffer_directory"
+"m" = "@:cd <C-r>%<C-w><ret>"
+"=" = ":toggle auto-completion"
+ret = ":toggle insert-final-newline"
+"l" = ":reflow"

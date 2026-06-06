@@ -1,10 +1,15 @@
 [language-server.hx-lsp]
 command = "hx-lsp"
 
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
 [[language]]
 name = "markdown"
-# language-servers = ["markdown-oxide", "marksman"]
+language-servers = ["harper-ls", "marksman"]
 file-types = ["md", "markdown", "txt"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"]}
 soft-wrap.enable = true
 text-width = 80
 
