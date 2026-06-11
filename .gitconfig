@@ -3,3 +3,5 @@
 	name = ericsmoore
 [core]
 	excludesFile = ~/.gitignore
+[commit]
+	verbose = true

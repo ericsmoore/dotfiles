@@ -4,11 +4,14 @@ alias l='ls -l'
 alias la='ls -la'
 
 alias gst='git status'
+alias gs='git status -s'
 alias ga='git add'
+alias gap='git add -p'
 alias gc='git commit'
 alias gch='git checkout'
 alias gp='git push'
-alias gl='git log --oneline --graph --decorate'
+alias gl='git log --graph --decorate --date=short \
+  --pretty=format:"%C(auto)%h %C(cyan)%ad%C(reset) %s %C(auto)%d"'
 alias gd='git diff'
 
 alias md='mkdir -p'
