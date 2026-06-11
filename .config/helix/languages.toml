@@ -27,3 +27,9 @@ language-servers = ["texlab", "hx-lsp"]
 [[language]]
 name = "bash"
 indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "c"
+formatter = {command = "clang-format", args = [
+  "-style={BasedOnStyle: LLVM, IndentCaseLabels: true, IndentCaseBlocks: true}"
+]}

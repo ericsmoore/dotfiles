@@ -36,6 +36,7 @@ cursor-line = "warning"
 
 # ---------Bindings---------
 [keys.normal]
+"G" = "@gg"
 "tab" = "goto_word"
 "}" = ["goto_next_paragraph"]
 "{" = ["goto_prev_paragraph"]
@@ -51,6 +52,7 @@ ret = ":toggle insert-final-newline"
 "l" = ":reflow"
 
 [keys.select]
+"G" = "@gg"
 "}" = ["goto_next_paragraph"]
 "{" = ["goto_prev_paragraph"]
 S-j = "@4j"
