@@ -36,12 +36,10 @@ cursor-line = "warning"
 
 # ---------Bindings---------
 [keys.normal]
-"G" = "@gg"
+esc = ["collapse_selection", "keep_primary_selection"]
 "tab" = "goto_word"
 "}" = ["goto_next_paragraph"]
 "{" = ["goto_prev_paragraph"]
-S-j = "@4j"
-S-k = "@4k"
 ret = ":w"
 
 [keys.normal.space]
@@ -52,11 +50,9 @@ ret = ":toggle insert-final-newline"
 "l" = ":reflow"
 
 [keys.select]
-"G" = "@gg"
+esc = ["collapse_selection", "keep_primary_selection"]
 "}" = ["goto_next_paragraph"]
 "{" = ["goto_prev_paragraph"]
-S-j = "@4j"
-S-k = "@4k"
 ret = ":w"
 
 [keys.select.space]

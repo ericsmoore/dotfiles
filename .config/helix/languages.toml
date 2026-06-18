@@ -33,3 +33,7 @@ name = "c"
 formatter = {command = "clang-format", args = [
   "-style={BasedOnStyle: LLVM, IndentCaseLabels: true, IndentCaseBlocks: true}"
 ]}
+
+[language-server.harper-ls.config.harper-ls.linters]
+Spaces = false
+Dashes = false
