@@ -37,3 +37,4 @@ formatter = {command = "clang-format", args = [
 [language-server.harper-ls.config.harper-ls.linters]
 Spaces = false
 Dashes = false
+UseEllipsisCharacter = false
