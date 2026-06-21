@@ -24,6 +24,8 @@ alias tec='tectonic'
 alias info='fastfetch'
 alias cinfo='clear && info'
 
+alias e="$EDITOR"
+
 if [[ "$OSTYPE" == 'linux-gnu'* ]]; then
   alias batt='acpi'
   alias p='wl-paste'
