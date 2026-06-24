@@ -1,0 +1,39 @@
+source "%val{config}/plugins/lsp.kak"
+source "%val{config}/plugins/buffers.kak"
+source "%val{config}/utils/clipboard.kak"
+source "%val{config}/utils/pickers.kak"
+source "%val{config}/utils/tmux.kak"
+source "%val{config}/utils/numbers.kak"
+source "%val{config}/languages/markdown.kak"
+
+# --- appearance ---
+colorscheme ashen
+set-option global ashen_dynamic_cursor true
+set-option global startup_info_version 99999999
+set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}}'
+# add-highlighter global/ruler  column -ruler │ 81 %opt{g_9}
+
+# --- editing ---
+# set-option global autocomplete prompt
+set-option global completers
+
+set-option global scrolloff  8,4
+set-option global aligntab   false
+set-option global indentwidth 4
+hook global InsertChar '\t' %{ execute-keys -draft "h%opt{indentwidth}@" }
+
+set-option global disabled_hooks .*-insert
+
+# --- maps ---
+map global normal <esc> ";,"
+map global normal <ret> ":w<ret>"
+map global normal '#'   ":comment-line<ret>"
+map global normal j     "gd"
+map global normal k     "gu"
+map global normal <tab> "<esc>:bn<ret>" -docstring "next buffer"
+
+map global user f   ":file-picker-prompt<ret>" -docstring "file picker"
+map global user =   ":split<ret>"             -docstring "vertical split"
+map global user '\' ":vsplit<ret>"             -docstring "horizontal split"
+map global user t   ":tabnew<ret>"             -docstring "new tab"
+

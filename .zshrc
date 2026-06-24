@@ -1,4 +1,4 @@
-export EDITOR=hx
+export EDITOR=kak
 
 HISTFILE="$HOME/.cache/zsh/.zsh_history"
 HISTSIZE=10000
