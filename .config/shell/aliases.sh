@@ -34,9 +34,6 @@ if [[ "$OSTYPE" == 'linux-gnu'* ]]; then
   alias wifion='nmcli radio wifi on'
   alias wifioff='nmcli radio wifi off'
 
-  if [[ -z "$TMUX" ]]; then
-    fastfetch
-  fi
 elif [[ "$OSTYPE" == 'darwin'* ]]; then
   alias cloud='~/Library/Mobile\ Documents/com~apple~CloudDocs'
   alias processing='/Applications/Processing.app/Contents/MacOS/Processing cli'
