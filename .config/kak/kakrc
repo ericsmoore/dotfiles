@@ -20,10 +20,17 @@ set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_
 # set-option global autocomplete prompt
 set-option global completers
 
-set-option global scrolloff  8,4
-set-option global aligntab   false
+set-option global scrolloff 8,4
+
+set-option global aligntab false
 set-option global indentwidth 4
+
 hook global InsertChar '\t' %{ execute-keys -draft "h%opt{indentwidth}@" }
+hook global InsertDelete ' ' %{ try %sh{
+    printf "%s\n" 'execute-keys -draft -itersel "<a-h><a-k>^\h+.\z<ret>I<space><esc><lt>"'
+} catch %{ try %{
+    execute-keys -itersel -draft "h%opt{softtabstop}<s-h>2<s-l>s\h+\z<ret>d"
+}}}
 
 set-option global disabled_hooks .*-insert
 
