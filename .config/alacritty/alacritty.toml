@@ -31,10 +31,3 @@ history = 10000
 
 [general]
 import = ["~/.config/alacritty/ashen.toml"]
-
-[[keyboard.bindings]]
-key = "F1"
-command = {program = "brightnessctl", args = ["set", "5%-"]}
-[[keyboard.bindings]]
-key = "F2"
-command = {program = "brightnessctl", args = ["set", "5%+"]}
