@@ -2,9 +2,8 @@ source "%val{config}/plugins/lsp.kak"
 source "%val{config}/plugins/buffers.kak"
 
 source "%val{config}/utils/clipboard.kak"
-source "%val{config}/utils/pickers.kak"
+# TODO: improve windowing and detection
 source "%val{config}/utils/tmux.kak"
-source "%val{config}/utils/numbers.kak"
 
 # TODO: Do something better
 source "%val{config}/languages/markdown.kak"
