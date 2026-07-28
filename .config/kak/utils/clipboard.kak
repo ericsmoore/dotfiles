@@ -57,7 +57,7 @@ evaluate-commands %sh{
     case $(uname) in
         Linux)
             if [ -n "$WAYLAND_DISPLAY" ]; then
-                copy="wl-copy -p"; paste="wl-paste -p";
+                copy="wl-copy"; paste="wl-paste";
             else
                 copy="xclip -i"; paste="xclip -o";
             fi
