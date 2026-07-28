@@ -88,6 +88,9 @@ input "type:touchpad" {
 
     # Disable changing focus with mouse
     focus_follows_mouse no
+
+    bindsym $mod+m input type:touchpad events toggle enabled disabled
+    seat * hide_cursor when-typing enable
 #
 # Workspaces:
 #
