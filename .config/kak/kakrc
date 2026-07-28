@@ -5,19 +5,21 @@ source "%val{config}/utils/clipboard.kak"
 # TODO: improve windowing and detection
 source "%val{config}/utils/tmux.kak"
 
-# TODO: Do something better
-source "%val{config}/languages/markdown.kak"
-source "%val{config}/languages/c.kak"
-source "%val{config}/languages/python.kak"
+evaluate-commands %sh{
+    for file in $kak_config/filetypes/*.kak; do
+        printf 'source %s\n' "$file"
+    done
+}
 
 # --- appearance ---
 colorscheme ashen
 set-option global startup_info_version 99999999
-set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}}'
+set-option -add global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}}'
 set-option global ui_options terminal_assistant=none
 
 hook global WinCreate .* %{
     add-highlighter window/ruler column -ruler │ 81 %opt{g_9}
+    add-highlighter window/line-numbers number-lines -relative -hlcursor -separator ""
 }
 
 # --- editing ---
@@ -51,10 +53,12 @@ map global normal <'> "<a-;>"
 map global normal <ret> ":w<ret>"
 map global normal '#'   ":comment-line<ret>"
 map global normal = ":format-selections<ret>"
-map global normal <tab> "<esc>:bn<ret>" -docstring "next buffer"
 
-map global user f   ":file-picker-prompt<ret>" -docstring "file picker"
 map global user =   ":split<ret>"             -docstring "vertical split"
 map global user '\' ":vsplit<ret>"             -docstring "horizontal split"
 map global user t   ":tabnew<ret>"             -docstring "new tab"
 
+# TODO: make better use of tab for buffer navigation
+# consider using some features of buffer plugin
+map global normal <tab> "<esc>:bn<ret>"
+map global buffers t ":e ~/notes/daily/%sh{date +%F}.md<ret>" -docstring "daily note"

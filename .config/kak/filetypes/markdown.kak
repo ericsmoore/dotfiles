@@ -11,16 +11,23 @@ define-command markdown_toggle_checkbox %{
     }
 }
 
-hook global WinSetOption filetype=(markdown|) %{
-    # add-highlighter window/wrap wrap -word -width 80
+# word count in modeline
+declare-option -hidden str modeline_buf_word_count_formatted ''
+set-option global modelinefmt '%opt{modeline_buf_word_count_formatted}'
 
-    # cheap way to cover up jerky scrolling when using wrap mode
-    # set-option window scrolloff 999,4
+define-command update-modeline-buf-word-count -hidden %{
+    set-option buffer modeline_buf_word_count_formatted %sh{
+        echo "eval -no-hooks -verbatim write \"$kak_response_fifo\"" > \
+            "$kak_command_fifo"
+        count="$(wc -w < "$kak_response_fifo")"
 
-    # map window normal j     "gd"
-    # map window normal k     "gu"
-    # map window normal J     "Gd"
-    # map window normal K     "Gu"
+        printf " ${count} words | "
+    }
+}
+
+hook global WinSetOption filetype=(markdown) %{
+    remove-highlighter window/ruler
+    remove-highlighter window/line-numbers
 
     set-option window autowrap_column 66
     set-option window autowrap_format_paragraph yes
@@ -28,11 +35,13 @@ hook global WinSetOption filetype=(markdown|) %{
     autowrap-enable
 
     set-option window autocomplete prompt
-    remove-highlighter window/ruler
 
     set-option window comment_block_begin '<!--'
     set-option window comment_block_end '-->'
 
     map window normal "#" "x_:comment-block<ret>"
     map window user c ":markdown_toggle_checkbox<ret>" -docstring "toggle checkbox"
+
+    hook window InsertIdle .* %{ update-modeline-buf-word-count }
+    hook window NormalIdle .* %{ update-modeline-buf-word-count }
 }
