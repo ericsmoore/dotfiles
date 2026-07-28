@@ -86,42 +86,42 @@ set-face global SecondaryCursorInsertEol "%opt{background},%opt{g_7}"
 set-face global PrimaryCursor   PrimaryCursorNormal
 set-face global SecondaryCursor SecondaryCursorNormal
 
-try %{
-    hook -always global WinCreate .* %{
-        try %{
-            %opt{ashen_eol_cursor}
-            set-face window PrimaryCursorEol   PrimaryCursorNormalEol
-            set-face window SecondaryCursorEol SecondaryCursorNormalEol
-        } catch %{
-            set-face window PrimaryCursorEol   PrimaryCursorNormal
-            set-face window SecondaryCursorEol SecondaryCursorNormal
-        }
-    }
+# try %{
+#     hook -always global WinCreate .* %{
+#         try %{
+#             %opt{ashen_eol_cursor}
+#             set-face window PrimaryCursorEol   PrimaryCursorNormalEol
+#             set-face window SecondaryCursorEol SecondaryCursorNormalEol
+#         } catch %{
+#             set-face window PrimaryCursorEol   PrimaryCursorNormal
+#             set-face window SecondaryCursorEol SecondaryCursorNormal
+#         }
+#     }
 
-    define-command -hidden ashen-set-cursor-mode -params 1 %{
-        try %{
-            %opt{ashen_dynamic_cursor}
-            set-face window PrimaryCursor %exp{PrimaryCursor%arg{1}}
-            set-face window SecondaryCursor %exp{SecondaryCursor%arg{1}}
-            try %{
-                %opt{ashen_eol_cursor}
-                set-face window PrimaryCursorEol %exp{PrimaryCursor%arg{1}Eol}
-                set-face window SecondaryCursorEol %exp{SecondaryCursor%arg{1}Eol}
-            } catch %{
-                set-face window PrimaryCursorEol %exp{PrimaryCursor%arg{1}}
-                set-face window SecondaryCursorEol %exp{SecondaryCursor%arg{1}}
-            }
-        }
-    }
+#     define-command -hidden ashen-set-cursor-mode -params 1 %{
+#         try %{
+#             %opt{ashen_dynamic_cursor}
+#             set-face window PrimaryCursor %exp{PrimaryCursor%arg{1}}
+#             set-face window SecondaryCursor %exp{SecondaryCursor%arg{1}}
+#             try %{
+#                 %opt{ashen_eol_cursor}
+#                 set-face window PrimaryCursorEol %exp{PrimaryCursor%arg{1}Eol}
+#                 set-face window SecondaryCursorEol %exp{SecondaryCursor%arg{1}Eol}
+#             } catch %{
+#                 set-face window PrimaryCursorEol %exp{PrimaryCursor%arg{1}}
+#                 set-face window SecondaryCursorEol %exp{SecondaryCursor%arg{1}}
+#             }
+#         }
+#     }
 
-    hook global ModeChange (push|pop):.*insert %{
-    	ashen-set-cursor-mode "Insert"
-    }
+#     hook global ModeChange (push|pop):.*insert %{
+#     	ashen-set-cursor-mode "Insert"
+#     }
 
-    hook global ModeChange (push|pop):insert:.* %{
-    	ashen-set-cursor-mode "Normal"
-    }
-}
+#     hook global ModeChange (push|pop):insert:.* %{
+#     	ashen-set-cursor-mode "Normal"
+#     }
+# }
 
 # Built-in UI
 set-face global Default            "%opt{text},%opt{background}"

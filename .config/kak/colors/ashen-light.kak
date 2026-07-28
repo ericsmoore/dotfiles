@@ -39,6 +39,7 @@ declare-option str g_4 "rgb:585858"
 declare-option str g_5 "rgb:6b6b6b"
 declare-option str g_6 "rgb:8c8c8c"
 declare-option str g_7 "rgb:acacac"
+declare-option str g_7andahalf "rgb:bfbfbf"
 declare-option str g_8 "rgb:cdcdcd"
 declare-option str g_9 "rgb:dedede"
 declare-option str g_10 "rgb:e2e2e2"
@@ -92,47 +93,47 @@ set-face global SecondaryCursorInsertEol "%opt{background},%opt{g_5}"
 set-face global PrimaryCursor   PrimaryCursorNormal
 set-face global SecondaryCursor SecondaryCursorNormal
 
-try %{
-    hook -always global WinCreate .* %{
-        try %{
-            %opt{ashen_eol_cursor}
-            set-face window PrimaryCursorEol   PrimaryCursorNormalEol
-            set-face window SecondaryCursorEol SecondaryCursorNormalEol
-        } catch %{
-            set-face window PrimaryCursorEol   PrimaryCursorNormal
-            set-face window SecondaryCursorEol SecondaryCursorNormal
-        }
-    }
-
-    define-command -hidden ashen-set-cursor-mode -params 1 %{
-        try %{
-            %opt{ashen_dynamic_cursor}
-            set-face window PrimaryCursor %exp{PrimaryCursor%arg{1}}
-            set-face window SecondaryCursor %exp{SecondaryCursor%arg{1}}
-            try %{
-                %opt{ashen_eol_cursor}
-                set-face window PrimaryCursorEol %exp{PrimaryCursor%arg{1}Eol}
-                set-face window SecondaryCursorEol %exp{SecondaryCursor%arg{1}Eol}
-            } catch %{
-                set-face window PrimaryCursorEol %exp{PrimaryCursor%arg{1}}
-                set-face window SecondaryCursorEol %exp{SecondaryCursor%arg{1}}
-            }
-        }
-    }
-
-    hook global ModeChange (push|pop):.*insert %{
-    	ashen-set-cursor-mode "Insert"
-    }
-
-    hook global ModeChange (push|pop):insert:.* %{
-    	ashen-set-cursor-mode "Normal"
-    }
-}
+# try %{
+#     hook -always global WinCreate .* %{
+#         try %{
+#             %opt{ashen_eol_cursor}
+#             set-face window PrimaryCursorEol   PrimaryCursorNormalEol
+#             set-face window SecondaryCursorEol SecondaryCursorNormalEol
+#         } catch %{
+#             set-face window PrimaryCursorEol   PrimaryCursorNormal
+#             set-face window SecondaryCursorEol SecondaryCursorNormal
+#         }
+#     }
+# 
+#     define-command -hidden ashen-set-cursor-mode -params 1 %{
+#         try %{
+#             %opt{ashen_dynamic_cursor}
+#             set-face window PrimaryCursor %exp{PrimaryCursor%arg{1}}
+#             set-face window SecondaryCursor %exp{SecondaryCursor%arg{1}}
+#             try %{
+#                 %opt{ashen_eol_cursor}
+#                 set-face window PrimaryCursorEol %exp{PrimaryCursor%arg{1}Eol}
+#                 set-face window SecondaryCursorEol %exp{SecondaryCursor%arg{1}Eol}
+#             } catch %{
+#                 set-face window PrimaryCursorEol %exp{PrimaryCursor%arg{1}}
+#                 set-face window SecondaryCursorEol %exp{SecondaryCursor%arg{1}}
+#             }
+#         }
+#     }
+# 
+#     hook global ModeChange (push|pop):.*insert %{
+#     	ashen-set-cursor-mode "Insert"
+#     }
+# 
+#     hook global ModeChange (push|pop):insert:.* %{
+#     	ashen-set-cursor-mode "Normal"
+#     }
+# }
 
 # Built-in UI
 set-face global Default            "%opt{text},%opt{background}"
-set-face global PrimarySelection      "%opt{background},%opt{g_5}+g"
-set-face global SecondarySelection    "%opt{background},%opt{g_7}+g"
+set-face global PrimarySelection      ",%opt{g_7}+g"
+set-face global SecondarySelection    ",%opt{g_7andahalf}+g"
 set-face global PrimaryCursorEol   PrimaryCursor
 set-face global SecondaryCursorEol SecondaryCursor
 set-face global LineNumbers        "%opt{g_6}"
@@ -157,94 +158,94 @@ set-face global BufferPadding      LineNumbers
 set-face global Whitespace         "%opt{g_7}+f"
 set-face global WrapMarker         "%opt{g_7}+f"
 
-# Tree-sitter (<https://git.sr.ht/~hadronized/kak-tree-sitter>)
+# # Tree-sitter (<https://git.sr.ht/~hadronized/kak-tree-sitter>)
 
-# kak-tree-sitter defaults
-set-face global ts_attribute                    "%opt{g_4}"
-set-face global ts_comment                      "%opt{g_6}+i"
-set-face global ts_comment_unused               "%opt{g_6}+is"
-set-face global ts_conceal                      "%opt{red_ember}+i"
-set-face global ts_constant                     "%opt{orange_blaze}"
-set-face global ts_constant_builtin_boolean     "%opt{blue}"
-set-face global ts_constant_character           "%opt{red_glowing}+b"
-set-face global ts_constant_macro               "%opt{blue}"
-set-face global ts_constructor                  "%opt{g_1}"
-set-face global ts_diff_plus                    "%opt{g_6}"
-set-face global ts_diff_minus                   "%opt{red_ember}"
-set-face global ts_diff_delta                   "%opt{brown}"
-set-face global ts_diff_delta_moved             ts_diff_delta
-set-face global ts_error                        "%opt{red_flame}"
-set-face global ts_function                     "%opt{g_3}+b"
-set-face global ts_function_builtin             "%opt{g_3}+bi"
-set-face global ts_function_macro               "%opt{red_ember}"
-set-face global ts_hint                         "%opt{g_4}"
-set-face global ts_info                         "%opt{g_2}"
-set-face global ts_keyword                      "%opt{red_ember}"
-set-face global ts_keyword_conditional          "%opt{red_ember}"
-set-face global ts_keyword_control_conditional  "%opt{red_ember}"
-set-face global ts_keyword_control_directive    "%opt{red_ember}+i"
-set-face global ts_keyword_control_import       "%opt{red_ember}"
-set-face global ts_keyword_directive            "%opt{red_ember}+i"
-set-face global ts_keyword_storage              "%opt{red_ember}"
-set-face global ts_keyword_storage_modifier     "%opt{red_ember}+i"
-set-face global ts_keyword_storage_modifier_mut "%opt{red_ember}+i"
-set-face global ts_keyword_storage_modifier_ref "%opt{red_ember}+i"
-set-face global ts_label                        "%opt{red_ember}"
-set-face global ts_markup_bold                  "+b" 
-set-face global ts_markup_heading               "%opt{red_glowing}+b"
-set-face global ts_markup_italic                "+i"
-set-face global ts_markup_list_checked          "%opt{orange_glow}"
-set-face global ts_markup_list_numbered         "%opt{orange_glow}"
-set-face global ts_markup_list_unchecked        "%opt{orange_glow}"
-set-face global ts_markup_list_unnumbered       "%opt{orange_glow}"
-set-face global ts_markup_link_label            "%opt{red_ember}"
-set-face global ts_markup_link_url              "%opt{red_glowing}+iu"
-set-face global ts_markup_link_uri              "%opt{red_glowing}+iu"
-set-face global ts_markup_link_text             "%opt{red_glowing}"
-set-face global ts_markup_quote                 "+i"
-set-face global ts_markup_raw_block             "%opt{g_2}"
-set-face global ts_markup_raw_inline            "%opt{g_2},%opt{g_10}"
-set-face global ts_markup_strikethrough         "+s"
-set-face global ts_namespace                    "%opt{orange_glow}+b"
-set-face global ts_operator                     "%opt{orange_blaze}"
-set-face global ts_property                     "%opt{g_2}"
-set-face global ts_punctuation                  "%opt{g_2}"
-set-face global ts_punctuation_special          "%opt{orange_golden}"
-set-face global ts_special                      "%opt{orange_smolder}"
-set-face global ts_spell                        ",,%opt{g_5}+c"
-set-face global ts_string                       "%opt{red_glowing}"
-set-face global ts_string_regex                 "%opt{orange_glow}"
-set-face global ts_string_regexp                "%opt{orange_glow}"
-set-face global ts_string_escape                "%opt{g_2}"
-set-face global ts_string_special               "%opt{g_2}"
-set-face global ts_string_special_path          "%opt{red_glowing}+b"
-set-face global ts_string_special_symbol        "%opt{orange_smolder}"
-set-face global ts_string_symbol                "%opt{orange_glow}"
-set-face global ts_tag                          "%opt{orange_glow}+i"
-set-face global ts_tag_error                    "%opt{red_flame}+i"
-set-face global ts_text                         "%opt{text}"
-set-face global ts_text_title                   "%opt{red_glowing}+b"
-set-face global ts_type                         "%opt{blue}"
-set-face global ts_type_enum_variant            "%opt{orange_blaze}"
-set-face global ts_type_enum_variant_builtin    "%opt{orange_blaze}"
-set-face global ts_variable                     "%opt{g_3}"
-set-face global ts_variable_builtin             "%opt{blue}"
-set-face global ts_variable_other_member        "%opt{g_2}"
-set-face global ts_variable_parameter           "%opt{g_2}+i"
-set-face global ts_warning                      "%opt{orange_golden}"
+# # kak-tree-sitter defaults
+# set-face global ts_attribute                    "%opt{g_4}"
+# set-face global ts_comment                      "%opt{g_6}+i"
+# set-face global ts_comment_unused               "%opt{g_6}+is"
+# set-face global ts_conceal                      "%opt{red_ember}+i"
+# set-face global ts_constant                     "%opt{orange_blaze}"
+# set-face global ts_constant_builtin_boolean     "%opt{blue}"
+# set-face global ts_constant_character           "%opt{red_glowing}+b"
+# set-face global ts_constant_macro               "%opt{blue}"
+# set-face global ts_constructor                  "%opt{g_1}"
+# set-face global ts_diff_plus                    "%opt{g_6}"
+# set-face global ts_diff_minus                   "%opt{red_ember}"
+# set-face global ts_diff_delta                   "%opt{brown}"
+# set-face global ts_diff_delta_moved             ts_diff_delta
+# set-face global ts_error                        "%opt{red_flame}"
+# set-face global ts_function                     "%opt{g_3}+b"
+# set-face global ts_function_builtin             "%opt{g_3}+bi"
+# set-face global ts_function_macro               "%opt{red_ember}"
+# set-face global ts_hint                         "%opt{g_4}"
+# set-face global ts_info                         "%opt{g_2}"
+# set-face global ts_keyword                      "%opt{red_ember}"
+# set-face global ts_keyword_conditional          "%opt{red_ember}"
+# set-face global ts_keyword_control_conditional  "%opt{red_ember}"
+# set-face global ts_keyword_control_directive    "%opt{red_ember}+i"
+# set-face global ts_keyword_control_import       "%opt{red_ember}"
+# set-face global ts_keyword_directive            "%opt{red_ember}+i"
+# set-face global ts_keyword_storage              "%opt{red_ember}"
+# set-face global ts_keyword_storage_modifier     "%opt{red_ember}+i"
+# set-face global ts_keyword_storage_modifier_mut "%opt{red_ember}+i"
+# set-face global ts_keyword_storage_modifier_ref "%opt{red_ember}+i"
+# set-face global ts_label                        "%opt{red_ember}"
+# set-face global ts_markup_bold                  "+b" 
+# set-face global ts_markup_heading               "%opt{red_glowing}+b"
+# set-face global ts_markup_italic                "+i"
+# set-face global ts_markup_list_checked          "%opt{orange_glow}"
+# set-face global ts_markup_list_numbered         "%opt{orange_glow}"
+# set-face global ts_markup_list_unchecked        "%opt{orange_glow}"
+# set-face global ts_markup_list_unnumbered       "%opt{orange_glow}"
+# set-face global ts_markup_link_label            "%opt{red_ember}"
+# set-face global ts_markup_link_url              "%opt{red_glowing}+iu"
+# set-face global ts_markup_link_uri              "%opt{red_glowing}+iu"
+# set-face global ts_markup_link_text             "%opt{red_glowing}"
+# set-face global ts_markup_quote                 "+i"
+# set-face global ts_markup_raw_block             "%opt{g_2}"
+# set-face global ts_markup_raw_inline            "%opt{g_2},%opt{g_10}"
+# set-face global ts_markup_strikethrough         "+s"
+# set-face global ts_namespace                    "%opt{orange_glow}+b"
+# set-face global ts_operator                     "%opt{orange_blaze}"
+# set-face global ts_property                     "%opt{g_2}"
+# set-face global ts_punctuation                  "%opt{g_2}"
+# set-face global ts_punctuation_special          "%opt{orange_golden}"
+# set-face global ts_special                      "%opt{orange_smolder}"
+# set-face global ts_spell                        ",,%opt{g_5}+c"
+# set-face global ts_string                       "%opt{red_glowing}"
+# set-face global ts_string_regex                 "%opt{orange_glow}"
+# set-face global ts_string_regexp                "%opt{orange_glow}"
+# set-face global ts_string_escape                "%opt{g_2}"
+# set-face global ts_string_special               "%opt{g_2}"
+# set-face global ts_string_special_path          "%opt{red_glowing}+b"
+# set-face global ts_string_special_symbol        "%opt{orange_smolder}"
+# set-face global ts_string_symbol                "%opt{orange_glow}"
+# set-face global ts_tag                          "%opt{orange_glow}+i"
+# set-face global ts_tag_error                    "%opt{red_flame}+i"
+# set-face global ts_text                         "%opt{text}"
+# set-face global ts_text_title                   "%opt{red_glowing}+b"
+# set-face global ts_type                         "%opt{blue}"
+# set-face global ts_type_enum_variant            "%opt{orange_blaze}"
+# set-face global ts_type_enum_variant_builtin    "%opt{orange_blaze}"
+# set-face global ts_variable                     "%opt{g_3}"
+# set-face global ts_variable_builtin             "%opt{blue}"
+# set-face global ts_variable_other_member        "%opt{g_2}"
+# set-face global ts_variable_parameter           "%opt{g_2}+i"
+# set-face global ts_warning                      "%opt{orange_golden}"
 
-# Helix capture groups
-set-face global ts_punctuation_delimiter          "%opt{orange_smolder}"
-set-face global ts_punctuation_bracket            "%opt{g_6}"
-set-face global ts_type_builtin                   "%opt{blue}"
-set-face global ts_type_parameter                 "%opt{orange_glow}"
-set-face global ts_constant_builtin               "%opt{blue}"
-set-face global ts_constant_character_escape      "%opt{g_2}"
-set-face global ts_constant_numeric               "%opt{blue}"
-set-face global ts_string_special_url             "%opt{red_glowing}+b"
-set-face global ts_comment_block_documentation    "%opt{g_5}+i"
-set-face global ts_keyword_operator               "%opt{orange_blaze}"
-set-face global ts_markup_list                    "%opt{orange_glow}"
+# # Helix capture groups
+# set-face global ts_punctuation_delimiter          "%opt{orange_smolder}"
+# set-face global ts_punctuation_bracket            "%opt{g_6}"
+# set-face global ts_type_builtin                   "%opt{blue}"
+# set-face global ts_type_parameter                 "%opt{orange_glow}"
+# set-face global ts_constant_builtin               "%opt{blue}"
+# set-face global ts_constant_character_escape      "%opt{g_2}"
+# set-face global ts_constant_numeric               "%opt{blue}"
+# set-face global ts_string_special_url             "%opt{red_glowing}+b"
+# set-face global ts_comment_block_documentation    "%opt{g_5}+i"
+# set-face global ts_keyword_operator               "%opt{orange_blaze}"
+# set-face global ts_markup_list                    "%opt{orange_glow}"
 
 # kak-lsp
 set-face global InlayHint "%opt{g_5},%opt{g_12}+i"
