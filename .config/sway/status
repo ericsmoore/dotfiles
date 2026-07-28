@@ -6,10 +6,15 @@ while true; do
     now=$(<"$BAT/charge_now")
     cap=$(<"$BAT/charge_full")
     battery=$(( 100 * now / cap))
-    batstat=$(cat "$BAT/status")
+    status=$(cat "$BAT/status")
+    charging=''
+
+    if [[ $status == 'Charging' ]]; then
+        charging='~'
+    fi
 
     date=$(date '+%Y-%m-%d %X')
 
-    echo " ${batstat}, ${battery}% | ${date}"
+    echo "${charging}${battery}%, ${date} "
     sleep 5
 done

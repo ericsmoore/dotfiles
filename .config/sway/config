@@ -87,7 +87,7 @@ input "type:touchpad" {
     bindsym $mod+Shift+Right move right
 
     # Disable changing focus with mouse
-    mouse_warping none
+    focus_follows_mouse no
 #
 # Workspaces:
 #
@@ -246,7 +246,7 @@ bar {
     colors {
         statusline $fg
         background $bg
-        focused_workspace  $bg $c1 $fg
+        focused_workspace  $bg $c9 $fg
         active_workspace   $bg $c2 $fg
         urgent_workspace   $bg $c3 $fg
         inactive_workspace $bg $bg $fg
