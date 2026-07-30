@@ -3,7 +3,7 @@ source "%val{config}/plugins/buffers.kak"
 
 source "%val{config}/utils/clipboard.kak"
 # TODO: improve windowing and detection
-source "%val{config}/utils/tmux.kak"
+source "%val{config}/utils/sway.kak"
 
 evaluate-commands %sh{
     for file in $kak_config/filetypes/*.kak; do

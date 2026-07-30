@@ -1,5 +1,5 @@
-.config/helix/runtime
-.config/w3m/history
-.config/w3m/cookie
+dot-config/helix/runtime
+dot-config/w3m/history
+dot-config/w3m/cookie
 
 .DS_Store

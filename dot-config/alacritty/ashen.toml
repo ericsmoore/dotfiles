@@ -5,7 +5,7 @@
 
 # Default Colors
 [colors.primary]
-background = '#0c0c0c' # Original (#121212)
+background = '#000000' # Original (#121212)
 foreground = '#f5f5f5'
 
 # Selection Colors
