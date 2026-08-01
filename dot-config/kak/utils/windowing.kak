@@ -1,17 +1,17 @@
-define-command vsplit -params .. -command-completion \
-    -docstring "vsplit [<commands>]: split tmux vertically" %{
+define-command hsplit -params .. -command-completion \
+    -docstring "hsplit [<commands>]: new horizontal split" %{
     "%opt{windowing_module}-terminal-horizontal" \
     kak -c %val{session} -e "%arg{@}"
 }
 
-define-command split -params .. -command-completion \
-    -docstring "split [<commands>]: split tmux horizontally" %{
+define-command vsplit -params .. -command-completion \
+    -docstring "vsplit [<commands>]: new vertical split" %{
     "%opt{windowing_module}-terminal-vertical" \
     kak -c %val{session} -e "%arg{@}"
 }
 
-define-command tabnew -params .. -command-completion \
-    -docstring "tabnew [<commands>]: create new tmux window" %{
+define-command newtab -params .. -command-completion \
+    -docstring "newtab [<commands>]: new tab" %{
     "%opt{windowing_module}-terminal-window" \
     kak -c %val{session} -e "%arg{@}"
 }

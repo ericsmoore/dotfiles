@@ -54,9 +54,9 @@ map global normal <ret> ":w<ret>"
 map global normal '#'   ":comment-line<ret>"
 map global normal = ":format-selections<ret>"
 
-map global user =   ":split<ret>"             -docstring "vertical split"
-map global user '\' ":vsplit<ret>"             -docstring "horizontal split"
-map global user t   ":tabnew<ret>"             -docstring "new tab"
+map global user '\' ":hsplit<ret>" -docstring "horizontal split"
+map global user  =  ":vsplit<ret>" -docstring "vertical split"
+map global user  t  ":newtab<ret>" -docstring "new tab"
 
 # TODO: make better use of tab for buffer navigation
 # consider using some features of buffer plugin
