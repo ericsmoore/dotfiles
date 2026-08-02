@@ -1,3 +1,9 @@
+# based on kakoune-buffers
+# https://github.com/Delapouite/kakoune-buffers
+# License: MIT
+#
+# modified by Eric Moore <esmoore.com>
+
 # buflist++: names AND modified bool
 # debug buffers (like *debug*, *lint*…) are excluded
 declare-option -hidden str-list buffers_info
@@ -32,54 +38,10 @@ hook global WinDisplay .* %{
   set-option global current_bufname %val{bufname}
 }
 
-define-command info-buffers -docstring 'populate an info box with a numbered buffers list' %{
-  refresh-buffers-info
-  evaluate-commands %sh{
-    # info title
-    printf "info -title '$kak_opt_buffers_total buffers' -- %%^"
-
-    index=0
-    eval "set -- $kak_quoted_opt_buffers_info"
-    while [ "$1" ]; do
-      # limit lists too big
-      index=$((index + 1))
-      if [ "$index" -gt "$kak_opt_max_list_buffers" ]; then
-        printf '  …'
-        break
-      fi
-
-      name=${1%_*}
-      if [ "$name" = "$kak_bufname" ]; then
-        printf '>'
-      elif [ "$name" = "$kak_opt_alt_bufname" ]; then
-        printf '#'
-      else
-        printf ' '
-      fi
-
-      modified=${1##*_}
-      if [ "$modified" = true ]; then
-        printf '+ '
-      else
-        printf '  '
-      fi
-
-      if [ "$index" -lt 10 ]; then
-        echo "0$index - $name"
-      else
-        echo "$index - $name"
-      fi
-
-      shift
-    done
-    printf ^\\n
-  }
-}
-
-declare-user-mode pick-buffers
+declare-user-mode buffers
 define-command pick-buffers -docstring 'enter buffer pick mode' %{
   refresh-buffers-info
-  unmap global pick-buffers
+  unmap global buffers
   evaluate-commands %sh{
     docstring() {
       if [ "$1" = true ]; then
@@ -103,23 +65,17 @@ define-command pick-buffers -docstring 'enter buffer pick mode' %{
       name=${1%_*}
       modified=${1##*_}
       if [ "$name" = "$kak_bufname" ]; then
-        printf "map global pick-buffers %s ': buffer-by-index %s<ret>' -docstring '%s'\n" ${buf_id} $index "$(docstring $modified '>' "$name")"
+        printf "map global buffers %s ': buffer-by-index %s<ret>' -docstring '%s'\n" ${buf_id} $index "$(docstring $modified '>' "$name")"
       elif [ "$name" = "$kak_opt_alt_bufname" ]; then
-        printf "map global pick-buffers %s ': buffer-by-index %s<ret>' -docstring '%s'\n" ${buf_id} $index "$(docstring $modified '#' "$name")"
+        printf "map global buffers %s ': buffer-by-index %s<ret>' -docstring '%s'\n" ${buf_id} $index "$(docstring $modified '#' "$name")"
       else
-        printf "map global pick-buffers %s ': buffer-by-index %s<ret>' -docstring '%s'\n" ${buf_id} $index "$(docstring $modified ':' "$name")"
+        printf "map global buffers %s ': buffer-by-index %s<ret>' -docstring '%s'\n" ${buf_id} $index "$(docstring $modified ':' "$name")"
       fi
 
       shift
     done
   }
-  enter-user-mode pick-buffers
-}
-
-define-command buffer-first -docstring 'move to the first buffer in the list' 'buffer-by-index 1'
-
-define-command buffer-last -docstring 'move to the last buffer in the list' %{
-  buffer-by-index %opt{buffers_total}
+  enter-user-mode buffers
 }
 
 define-command -hidden -params 1 buffer-by-index %{
@@ -132,21 +88,6 @@ define-command -hidden -params 1 buffer-by-index %{
       index=$((index+1))
       name=${1%_*}
       if [ $index = $target ]; then
-        printf "buffer '$name'"
-      fi
-      shift
-    done
-  }
-}
-
-define-command buffer-first-modified -docstring 'move to the first modified buffer in the list' %{
-  refresh-buffers-info
-  evaluate-commands %sh{
-    eval "set -- $kak_quoted_opt_buffers_info"
-    while [ "$1" ]; do
-      name=${1%_*}
-      modified=${1##*_}
-      if [ "$modified" = true ]; then
         printf "buffer '$name'"
       fi
       shift
@@ -218,48 +159,5 @@ define-command edit-kakrc -docstring 'open kakrc in a new buffer' %{
   edit "%val{config}/kakrc"
 }
 
-declare-user-mode buffers
-
-map global buffers a 'ga'                             -docstring 'alternate ↔'
-map global buffers b ': info-buffers<ret>'            -docstring 'info'
-map global buffers c ': edit-kakrc<ret>'              -docstring 'config'
-map global buffers d ': delete-buffer<ret>'           -docstring 'delete'
-map global buffers D ': delete-buffers<ret>'          -docstring 'delete all'
-map global buffers f ': buffer<space>'                -docstring 'find'
-map global buffers h ': buffer-first<ret>'            -docstring 'first ⇐'
-map global buffers l ': buffer-last<ret>'             -docstring 'last ⇒'
-map global buffers m ': buffer-first-modified<ret>'   -docstring 'modified'
-map global buffers n ': buffer-next<ret>'             -docstring 'next →'
-map global buffers o ': buffer-only<ret>'             -docstring 'only'
-map global buffers p ': buffer-previous<ret>'         -docstring 'previous ←'
-map global buffers r ': rename-buffer '               -docstring 'rename'
-map global buffers s ': edit -scratch *scratch*<ret>' -docstring '*scratch*'
-map global buffers u ': buffer *debug*<ret>'          -docstring '*debug*'
-
-# trick to access count, 3b → display third buffer
-define-command -hidden enter-buffers-mode %{
-  evaluate-commands %sh{
-    if [ "$kak_count" -eq 0 ]; then
-      printf 'enter-user-mode buffers'
-    else
-      printf "buffer-by-index $kak_count"
-    fi
-  }
-}
-
-# Suggested hook
-
-#hook global WinDisplay .* info-buffers
-
-# Suggested mappings
-
-map global user b ':enter-buffers-mode<ret>'              -docstring 'buffers…'
-map global user B ':enter-user-mode -lock buffers<ret>'   -docstring 'buffers (lock)…'
-
-# Suggested aliases
-
-alias global bc delete-buffer
-alias global bf buffer-first
-alias global bl buffer-last
-alias global bco buffer-only
-alias global bco! buffer-only-force
+alias global dbo buffer-only
+alias global dbo! buffer-only-force
