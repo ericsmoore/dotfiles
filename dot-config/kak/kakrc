@@ -17,7 +17,8 @@ evaluate-commands %sh{
 
 colorscheme ashen
 set-option global startup_info_version 99999999
-set-option -add global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}}'
+set-option -add global modelinefmt \
+    '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}}'
 set-option global ui_options terminal_assistant=none
 
 hook global WinCreate .* %{
@@ -51,7 +52,9 @@ hook global InsertDelete ' ' %{ try %sh{
 # TODO: Disable by language. Some are okay.
 # set-option global disabled_hooks .*-insert
 
-# --- maps ---
+# ======== maps ========
+
+map global insert <esc> "<esc>;,"
 map global normal <esc> ";,"
 map global normal <'>   "<a-;>"
 map global normal <ret> ":w<ret>"
