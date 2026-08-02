@@ -5,6 +5,7 @@ source "%val{config}/plugins/jump.kak"
 
 source "%val{config}/utils/clipboard.kak"
 source "%val{config}/utils/windowing.kak"
+source "%val{config}/utils/notes.kak"
 # TODO: helix inspired match mode
 
 evaluate-commands %sh{
@@ -69,8 +70,3 @@ map global normal <tab> "<esc>:pick-buffers<ret>"
 map global goto w "<esc>:enter_jump_mode_with_replace_select_mode<ret>" -docstring "jump word"
 map global goto W "<esc>:enter_jump_mode_with_extend_select_mode<ret>"  -docstring "jump word"
 
-map global user  t  ":newtab<ret>" -docstring "new tab"
-map global user n ":enter-user-mode notes<ret>" -docstring "notes mode"
-declare-user-mode notes
-map global notes n ":edit ~/notes/daily/%sh{date +%F}.md<ret>" -docstring "daily"
-map global notes t ":e ~/notes/todo.md<ret>" -docstring "todos"
