@@ -7,6 +7,8 @@
 # dependencies: []
 # doc: yes
 # tests: no
+#
+# modified to hide commands
 declare-option range-specs jump_ranges
 declare-option str-to-str-map jump_label_selection_map
 declare-option str-list jump_selections
@@ -40,7 +42,7 @@ declare-option str-list jump_labels \
 
 set-face global JumpLabel 'black,bright-yellow+F'
 
-define-command enter_jump_mode_with_replace_select_mode %{
+define-command -hidden enter_jump_mode_with_replace_select_mode %{
   enter_jump_mode 'jump (replace):' %{
     try %{
       execute-keys -save-regs 's' '<esc><a-,>"sZz"s<a-z>a<esc>'
@@ -50,19 +52,19 @@ define-command enter_jump_mode_with_replace_select_mode %{
   }
 }
 
-define-command enter_jump_mode_with_extend_select_mode %{
+define-command -hidden enter_jump_mode_with_extend_select_mode %{
   enter_jump_mode 'jump (extend):' %{
     execute-keys -save-regs 's' '<esc>"sZ,<a-z>u"s<a-z>a<esc>'
   }
 }
 
-define-command enter_jump_mode_with_append_select_mode %{
+define-command -hidden enter_jump_mode_with_append_select_mode %{
   enter_jump_mode 'jump (append):' %{
     execute-keys -save-regs 's' '<esc>"sZz"s<a-z>a<esc>'
   }
 }
 
-define-command enter_jump_mode -params 2 %{
+define-command -hidden enter_jump_mode -params 2 %{
   create_jump_state_from_words_in_viewport
   create_jump_label_selection_map_option_buffer
   execute-keys 'ga'
@@ -70,20 +72,20 @@ define-command enter_jump_mode -params 2 %{
   open_jump_prompt %arg{1} %arg{2}
 }
 
-define-command exit_jump_mode %{
+define-command -hidden exit_jump_mode %{
   unrender_jump_labels
   close_jump_label_selection_map_option_buffer
 }
 
-define-command render_jump_labels %{
+define-command -hidden render_jump_labels %{
   add-highlighter window/jump_ranges replace-ranges jump_ranges
 }
 
-define-command unrender_jump_labels %{
+define-command -hidden unrender_jump_labels %{
   remove-highlighter window/jump_ranges
 }
 
-define-command open_jump_prompt -params 2 %{
+define-command -hidden open_jump_prompt -params 2 %{
   prompt %arg{1} %{
     exit_jump_mode
   } -on-change %{
@@ -93,7 +95,7 @@ define-command open_jump_prompt -params 2 %{
   }
 }
 
-define-command handle_jump_input -params 2 %{
+define-command -hidden handle_jump_input -params 2 %{
   evaluate-commands -save-regs '^/' -draft -verbatim try %{
     open_jump_label_selection_map_option_buffer
     set-register / "\A\Q%arg{1}\E=(\d+\.\d+,\d+\.\d+)\z"
@@ -106,13 +108,13 @@ define-command handle_jump_input -params 2 %{
   }
 }
 
-define-command create_jump_state_from_words_in_viewport %{
+define-command -hidden create_jump_state_from_words_in_viewport %{
   create_jump_state_from_selections_in_viewport %{
     execute-keys 's\w+<ret><a-i>w'
   }
 }
 
-define-command create_jump_state_from_selections_in_viewport -params 1 %{
+define-command -hidden create_jump_state_from_selections_in_viewport -params 1 %{
   evaluate-commands -draft %{
     execute-keys 'gtGbx'
     evaluate-commands %arg{1}
@@ -121,7 +123,7 @@ define-command create_jump_state_from_selections_in_viewport -params 1 %{
   }
 }
 
-define-command create_jump_state -params .. %{
+define-command -hidden create_jump_state -params .. %{
   evaluate-commands -save-regs '"ab' %{
     set-register a %arg{@}
     set-register b %opt{jump_labels}
@@ -145,7 +147,7 @@ define-command create_jump_state -params .. %{
   }
 }
 
-define-command create_jump_label_selection_map_option_buffer %{
+define-command -hidden create_jump_label_selection_map_option_buffer %{
   evaluate-commands -save-regs '"' %{
     set-register dquote %opt{jump_label_selection_map}
     edit -scratch "jump_label_selection_map@%val{client}.option"
@@ -154,11 +156,11 @@ define-command create_jump_label_selection_map_option_buffer %{
   }
 }
 
-define-command open_jump_label_selection_map_option_buffer %{
+define-command -hidden open_jump_label_selection_map_option_buffer %{
   edit -scratch "jump_label_selection_map@%val{client}.option"
   select %opt{jump_selections}
 }
 
-define-command close_jump_label_selection_map_option_buffer %{
+define-command -hidden close_jump_label_selection_map_option_buffer %{
   delete-buffer "jump_label_selection_map@%val{client}.option"
 }
