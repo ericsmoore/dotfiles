@@ -55,23 +55,16 @@ define-command -docstring %{
 }
 evaluate-commands %sh{
     case $(uname) in
-        Linux)
-            if [ -n "$WAYLAND_DISPLAY" ]; then
-                copy="wl-copy"; paste="wl-paste";
-            else
-                copy="xclip -i"; paste="xclip -o";
-            fi
-            ;;
-        Darwin) copy="pbcopy"; paste="pbpaste";
+        Linux) copy="wl-copy"; paste="wl-paste";;
+        Darwin) copy="pbcopy"; paste="pbpaste";;
     esac
-
     printf "set-option global clipboard_copy_cmd '%s'\n" "$copy"
     printf "set-option global clipboard_paste_cmd '%s'\n" "$paste"
 }
 
-map global user p "<a-!>%opt{clipboard_paste_cmd}<ret>" -docstring "paste (after) from clipboard" 
-map global user P "!%opt{clipboard_paste_cmd}<ret>" -docstring "paste (before) from clipboard"
-map global user Y ":clipboard-copy<ret>:echo -markup %{{Information}copied selections to system clipboard}<ret>" -docstring "yank to system"
-map global user y ":clipboard-copy -split<ret>:echo -markup %{{Information}copied selections by line to system clipboard}<ret>" -docstring "yank to system"
+map global user p "<a-!>%opt{clipboard_paste_cmd}<ret>" -docstring "paste from clipboard" 
+map global user P "!%opt{clipboard_paste_cmd}<ret>" -docstring "paste from clipboard"
+map global user Y ":clipboard-copy<ret>:echo -markup %{{Information}copied selections to system clipboard}<ret>" -docstring "yank to clipboard"
+map global user y ":clipboard-copy -split<ret>:echo -markup %{{Information}copied selections by line to system clipboard}<ret>" -docstring "yank to clipboard"
 map global user R "|%opt{clipboard_paste_cmd}<ret>" -docstring "replace from clipboard"
 
