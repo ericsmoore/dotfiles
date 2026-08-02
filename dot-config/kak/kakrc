@@ -1,9 +1,11 @@
 source "%val{config}/plugins/lsp.kak"
 source "%val{config}/plugins/buffers.kak"
+# TODO: read through jump
 source "%val{config}/plugins/jump.kak"
 
 source "%val{config}/utils/clipboard.kak"
 source "%val{config}/utils/windowing.kak"
+# TODO: helix inspired match mode
 
 evaluate-commands %sh{
     for file in $kak_config/filetypes/*.kak; do
@@ -11,7 +13,8 @@ evaluate-commands %sh{
     done
 }
 
-# --- appearance ---
+# ======== appearance ========
+
 colorscheme ashen
 set-option global startup_info_version 99999999
 set-option -add global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}}'
@@ -22,7 +25,8 @@ hook global WinCreate .* %{
     add-highlighter window/line-numbers number-lines -relative -hlcursor -separator ""
 }
 
-# --- editing ---
+# ======== editing ========
+
 hook global InsertCompletionShow .* %{
     map global insert <tab> <c-n>
     map global insert <s-tab> <c-p>
@@ -49,10 +53,11 @@ hook global InsertDelete ' ' %{ try %sh{
 
 # --- maps ---
 map global normal <esc> ";,"
-map global normal <'> "<a-;>"
+map global normal <'>   "<a-;>"
 map global normal <ret> ":w<ret>"
+# TODO: smart comment
 map global normal '#'   ":comment-line<ret>"
-map global normal = ":format-selections<ret>"
+map global normal  =    ":format-selections<ret>"
 
 map global user '\' ":hsplit<ret>" -docstring "horizontal split"
 map global user  =  ":vsplit<ret>" -docstring "vertical split"
