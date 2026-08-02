@@ -1,0 +1,118 @@
+# Oaken for Kakoune
+
+# Based on: 
+# Ashen for Kakoune
+# Author: Daniel Fichtinger
+# License: MIT
+# Upstream: https://codeberg.org/ficd/kak-ashen
+
+declare-option str cursorline "rgb:e4e4e4"
+declare-option str text "rgb:1b1b1b"
+
+declare-option str green_light "rgb:057861"
+declare-option str green_dark "rgb:014738"
+declare-option str teal "rgb:018A85"
+
+declare-option str rust "rgb:702121"
+declare-option str rust_light "rgb:b55050"
+declare-option str warning_yellow "rgb:d49215"
+
+declare-option str background "rgb:f5f5f5"
+
+declare-option str g_1 "rgb:191919"
+declare-option str g_2 "rgb:2a2a2a"
+declare-option str g_3 "rgb:4b4b4b"
+declare-option str g_4 "rgb:585858"
+declare-option str g_5 "rgb:6b6b6b"
+declare-option str g_6 "rgb:8c8c8c"
+declare-option str g_7 "rgb:acacac"
+declare-option str g_8 "rgb:cdcdcd"
+declare-option str g_9 "rgb:dedede"
+declare-option str g_10 "rgb:e2e2e2"
+declare-option str g_11 "rgb:e4e4e4"
+declare-option str g_12 "rgb:e8e8e8"
+
+# Built-in Code Highlighting
+set-face global value         "%opt{rust}"
+set-face global type          "%opt{rust}"
+set-face global variable      "%opt{g_1}"
+set-face global module        "%opt{teal}"
+set-face global function      "%opt{g_2}+b"
+set-face global string        "%opt{green_light}"
+set-face global keyword       "%opt{green_dark}"
+set-face global operator      "%opt{teal}"
+set-face global attribute     "%opt{g_2}+i"
+set-face global comment       "%opt{g_4}+i"
+set-face global documentation comment
+set-face global meta          "%opt{green_dark}"
+set-face global builtin       function
+
+# Markdown Highlighting
+set-face global title     "%opt{green_light}+b"
+set-face global header    "%opt{green_light}"
+set-face global mono      "%opt{g_2},%opt{g_10}"
+set-face global block     "%opt{g_2},%opt{g_10}"
+set-face global link      "%opt{green_light}+ui"
+set-face global bullet    "%opt{green_light}"
+set-face global list      "%opt{green_light}"
+
+# Built-in UI
+set-face global Default            "%opt{text},%opt{background}"
+set-face global PrimarySelection      ",%opt{g_8}+g"
+set-face global SecondarySelection    ",%opt{g_9}+g"
+set-face global PrimaryCursor "%opt{background},%opt{rust}+b"
+set-face global SecondaryCursor "%opt{background},%opt{rust_light}"
+set-face global PrimaryCursorEol   PrimaryCursor
+set-face global SecondaryCursorEol SecondaryCursor
+set-face global LineNumbers        "%opt{g_6}"
+set-face global LineNumberCursor   "%opt{g_2},,"
+set-face global LineNumbersWrapped LineNumbers
+set-face global MenuForeground     "%opt{background},%opt{green_dark}+b"
+set-face global MenuBackground     "%opt{g_2},%opt{g_9}"
+set-face global MenuInfo           "%opt{text},%opt{g_9}"
+set-face global Information        MenuInfo
+set-face global InlineInformation  "%opt{g_6}+i"
+set-face global Error              "%opt{rust},%opt{background}"
+set-face global DiagnosticError    ",,%opt{rust}+c"
+set-face global DiagnosticWarning  ",,%opt{warning_yellow}+c"
+set-face global StatusLine         "%opt{g_2},%opt{g_9}"
+set-face global StatusLineMode     "%opt{teal}+b"
+set-face global StatusLineInfo     "%opt{green_dark}"
+set-face global StatusLineValue    "%opt{rust}"
+set-face global StatusCursor       "%opt{background},%opt{g_3}+b"
+set-face global Prompt             "%opt{teal}"
+set-face global MatchingChar       "%opt{warning_yellow}+uf"
+set-face global BufferPadding      LineNumbers
+set-face global Whitespace         "%opt{g_7}+f"
+set-face global WrapMarker         "%opt{g_7}+f"
+
+# kak-lsp
+set-face global InlayHint "%opt{g_5},%opt{g_12}+i"
+set-face global parameter "@ts_variable_paramter"
+set-face global enum "@ts_type_enum_variant"
+set-face global InlayDiagnosticError Error
+set-face global InlayDiagnosticWarning "%opt{warning_yellow}"
+set-face global InlayDiagnosticInfo "%opt{g_2}"
+set-face global InlayDiagnosticHint "%opt{g_4}"
+set-face global LineFlagError "%opt{rust}"
+set-face global LineFlagWarning "%opt{warning_yellow}"
+set-face global LineFlagInfo "%opt{g_2}"
+set-face global LineFlagHint "%opt{g_4}"
+set-face global DiagnosticError ",,%opt{rust}+c"
+set-face global DiagnosticWarning ",,%opt{warning_yellow}+c"
+set-face global DiagnosticInfo ",,%opt{g_2}+c"
+set-face global DiagnosticHint ",,%opt{g_4}+c"
+# Infobox faces
+set-face global InfoDefault Information
+set-face global InfoBlock block
+set-face global InfoBlockQuote block
+set-face global InfoBullet bullet
+set-face global InfoHeader header
+set-face global InfoLink link
+set-face global InfoLinkMono header
+set-face global InfoMono mono
+set-face global InfoRule comment
+set-face global InfoDiagnosticError InlayDiagnosticError
+set-face global InfoDiagnosticHint InlayDiagnosticHint
+set-face global InfoDiagnosticInformation InlayDiagnosticInfo
+set-face global InfoDiagnosticWarning InlayDiagnosticWarning
