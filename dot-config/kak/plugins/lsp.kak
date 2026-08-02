@@ -18,3 +18,17 @@ map global object f     '<a-semicolon>lsp-object Function Method<ret>'          
 map global object t     '<a-semicolon>lsp-object Class Interface Module Namespace Struct<ret>'  -docstring 'LSP class or module'
 map global object d     '<a-semicolon>lsp-diagnostic-object error warning<ret>'                 -docstring 'LSP errors and warnings'
 map global object D     '<a-semicolon>lsp-diagnostic-object error<ret>'                         -docstring 'LSP errors'
+
+remove-hooks global lsp-filetype-python
+hook -group lsp-filetype-python global BufSetOption filetype=python %{
+    set-option buffer lsp_servers %{
+        [ty]
+        command = "ty"
+        root_globs = ["requirements.txt", "setup.py", "pyproject.toml", ".git", ".hg"]
+        args = ["server"]
+        [ruff]
+        root_globs = ["requirements.txt", "setup.py", "pyproject.toml", ".git", ".hg"]
+        command = "ruff"
+        args = ["server"]
+    }
+}
