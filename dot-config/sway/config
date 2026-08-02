@@ -13,8 +13,8 @@ set $term alacritty
 set $menu wmenu-run
 
 exec swayidle -w \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         timeout 1200 'systemctl suspend'
+         timeout 1200 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 2400 'systemctl suspend'
          # before-sleep 'swaylock -f -c 000000'
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -52,6 +52,7 @@ bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaymsg exit
+bindsym $mod+Shift+backspace exec systemctl suspend
 
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
@@ -132,7 +133,7 @@ bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ t
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 # Special key to take a screenshot with grim
-bindsym Print exec grim
+bindsym F12 exec grim -g "$(slurp)"
 
 ### Apperance:
 
