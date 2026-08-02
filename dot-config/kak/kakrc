@@ -63,6 +63,8 @@ map global normal <ret> ":w<ret>"
 map global normal '#'   ":comment-line<ret>"
 map global normal  =    ":format-selections<ret>"
 
+map global user  t  ":newtab<ret>" -docstring "new tab"
+
 map global normal <tab> "<esc>:pick-buffers<ret>"
 
 # Q: it should actually be gw and Gw for consistency

@@ -108,6 +108,19 @@ define-command delete-buffers -docstring 'delete all saved buffers' %{
   }
 }
 
+define-command delete-buffers-force -docstring 'delete all buffers' %{
+  evaluate-commands %sh{
+    deleted=0
+    eval "set -- $kak_quoted_buflist"
+    while [ "$1" ]; do
+      echo "delete-buffer! '$1'"
+      echo "echo -markup '{Information}$deleted buffers deleted'"
+      deleted=$((deleted+1))
+      shift
+    done
+  }
+}
+
 define-command buffer-only -docstring 'delete all saved buffers except current one' %{
   evaluate-commands %sh{
     deleted=0
@@ -161,3 +174,5 @@ define-command edit-kakrc -docstring 'open kakrc in a new buffer' %{
 
 alias global dbo buffer-only
 alias global dbo! buffer-only-force
+alias global dba delete-buffers
+alias global dba! delete-buffers-force
