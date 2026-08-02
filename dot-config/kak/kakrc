@@ -62,11 +62,15 @@ map global normal <ret> ":w<ret>"
 map global normal '#'   ":comment-line<ret>"
 map global normal  =    ":format-selections<ret>"
 
-map global user '\' ":hsplit<ret>" -docstring "horizontal split"
-map global user  =  ":vsplit<ret>" -docstring "vertical split"
-map global user  t  ":newtab<ret>" -docstring "new tab"
+map global normal <tab> "<esc>:pick-buffers<ret>"
 
-# TODO: make better use of tab for buffer navigation
-# consider using some features of buffer plugin
-map global normal <tab> "<esc>:bn<ret>"
-map global buffers t ":e ~/notes/daily/%sh{date +%F}.md<ret>" -docstring "daily note"
+# Q: it should actually be gw and Gw for consistency
+# but I don't think there's a GOTO (goto-extend) mode..? 
+map global goto w "<esc>:enter_jump_mode_with_replace_select_mode<ret>" -docstring "jump word"
+map global goto W "<esc>:enter_jump_mode_with_extend_select_mode<ret>"  -docstring "jump word"
+
+map global user  t  ":newtab<ret>" -docstring "new tab"
+map global user n ":enter-user-mode notes<ret>" -docstring "notes mode"
+declare-user-mode notes
+map global notes n ":edit ~/notes/daily/%sh{date +%F}.md<ret>" -docstring "daily"
+map global notes t ":e ~/notes/todo.md<ret>" -docstring "todos"
