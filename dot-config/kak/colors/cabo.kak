@@ -1,4 +1,4 @@
-# Oaken for Kakoune
+# Cabo for Kakoune
 
 # Based on: 
 # Ashen for Kakoune
@@ -9,12 +9,12 @@
 declare-option str cursorline "rgb:e4e4e4"
 declare-option str text "rgb:1b1b1b"
 
-declare-option str green_light "rgb:057861"
-declare-option str green_dark "rgb:014738"
-declare-option str teal "rgb:018A85"
-
+declare-option str green_light "rgb:06856B"
+declare-option str green_dark "rgb:015240"
+declare-option str greener "rgb:028050"
+declare-option str lapis "rgb:214D70"
+declare-option str lapis_light "rgb:557FA1"
 declare-option str rust "rgb:702121"
-declare-option str rust_light "rgb:b55050"
 declare-option str warning_yellow "rgb:d49215"
 
 declare-option str background "rgb:f5f5f5"
@@ -33,14 +33,14 @@ declare-option str g_11 "rgb:e4e4e4"
 declare-option str g_12 "rgb:e8e8e8"
 
 # Built-in Code Highlighting
-set-face global value         "%opt{rust}"
-set-face global type          "%opt{rust}"
+set-face global value         "%opt{lapis}"
+set-face global type          "%opt{lapis}"
 set-face global variable      "%opt{g_1}"
-set-face global module        "%opt{teal}"
+set-face global module        "%opt{greener}"
 set-face global function      "%opt{g_2}+b"
 set-face global string        "%opt{green_light}"
 set-face global keyword       "%opt{green_dark}"
-set-face global operator      "%opt{teal}"
+set-face global operator      "%opt{greener}"
 set-face global attribute     "%opt{g_2}+i"
 set-face global comment       "%opt{g_4}+i"
 set-face global documentation comment
@@ -60,8 +60,8 @@ set-face global list      "%opt{green_light}"
 set-face global Default            "%opt{text},%opt{background}"
 set-face global PrimarySelection      ",%opt{g_8}+g"
 set-face global SecondarySelection    ",%opt{g_9}+g"
-set-face global PrimaryCursor "%opt{background},%opt{rust}+b"
-set-face global SecondaryCursor "%opt{background},%opt{rust_light}"
+set-face global PrimaryCursor "%opt{background},%opt{lapis}+b"
+set-face global SecondaryCursor "%opt{background},%opt{lapis_light}"
 set-face global PrimaryCursorEol   PrimaryCursor
 set-face global SecondaryCursorEol SecondaryCursor
 set-face global LineNumbers        "%opt{g_6}"
@@ -76,11 +76,11 @@ set-face global Error              "%opt{rust},%opt{background}"
 set-face global DiagnosticError    ",,%opt{rust}+c"
 set-face global DiagnosticWarning  ",,%opt{warning_yellow}+c"
 set-face global StatusLine         "%opt{g_2},%opt{g_9}"
-set-face global StatusLineMode     "%opt{teal}+b"
+set-face global StatusLineMode     "%opt{greener}+b"
 set-face global StatusLineInfo     "%opt{green_dark}"
-set-face global StatusLineValue    "%opt{rust}"
+set-face global StatusLineValue    "%opt{lapis}"
 set-face global StatusCursor       "%opt{background},%opt{g_3}+b"
-set-face global Prompt             "%opt{teal}"
+set-face global Prompt             "%opt{greener}"
 set-face global MatchingChar       "%opt{warning_yellow}+uf"
 set-face global BufferPadding      LineNumbers
 set-face global Whitespace         "%opt{g_7}+f"
@@ -94,7 +94,7 @@ set-face global InlayDiagnosticError Error
 set-face global InlayDiagnosticWarning "%opt{warning_yellow}"
 set-face global InlayDiagnosticInfo "%opt{g_2}"
 set-face global InlayDiagnosticHint "%opt{g_4}"
-set-face global LineFlagError "%opt{rust}"
+set-face global LineFlagError "%opt{lapis}"
 set-face global LineFlagWarning "%opt{warning_yellow}"
 set-face global LineFlagInfo "%opt{g_2}"
 set-face global LineFlagHint "%opt{g_4}"
