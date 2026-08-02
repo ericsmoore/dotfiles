@@ -7,7 +7,7 @@ if (( $# > 0)); then
     date=$(date -d "$*" +%F)
 fi
 
-workingdir=<$(pwd)
+workingdir=$PWD
 
 cd "$notesdir"
 
