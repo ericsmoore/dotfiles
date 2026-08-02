@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+notesdir="$HOME/notes"
+date=$(date +%F)
+
+if (( $# > 0)); then
+    date=$(date -d "$*" +%F)
+fi
+
+workingdir=<$(pwd)
+
+cd "$notesdir"
+
+if [[ -f "$notesdir/daily/$date.md" ]]; then
+    kak "daily/$date.md"
+else
+    while true; do
+        read -p "No note on $date. Make one? [y/n]: " yn
+        case $yn in
+            [Yy]*) kak "daily/$date.md"; break ;;
+            [Nn]*) exit 1 ;;
+        esac
+    done
+fi
+
+cd "$workingdir"
