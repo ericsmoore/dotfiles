@@ -62,7 +62,6 @@ define-command -hidden dumb-comment %{
 
 # ======== maps ========
 
-map global insert <esc> "<esc>;,"
 map global normal <esc> ";,"
 map global normal <'>   "<a-;>"
 map global normal <ret> ":w<ret>"
