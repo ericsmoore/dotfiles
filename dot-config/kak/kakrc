@@ -50,6 +50,13 @@ hook global InsertDelete ' ' %{ try %sh{
     execute-keys -itersel -draft "h%opt{indentwidth}<s-h>2<s-l>s\h+\z<ret>d"
 }}}
 
+# dumb comment
+define-command -hidden dumb-comment %{
+    try %{ comment-line } catch %{
+        execute-keys "x_:comment-block<ret>"
+    }
+}
+
 # TODO: Disable by language. Some are okay.
 # set-option global disabled_hooks .*-insert
 
@@ -59,8 +66,7 @@ map global insert <esc> "<esc>;,"
 map global normal <esc> ";,"
 map global normal <'>   "<a-;>"
 map global normal <ret> ":w<ret>"
-# TODO: smart comment
-map global normal '#'   ":comment-line<ret>"
+map global normal '#' ":dumb-comment<ret>"
 map global normal  =    ":format-selections<ret>"
 
 map global user  t  ":newtab<ret>" -docstring "new tab"
