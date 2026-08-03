@@ -1,4 +1,5 @@
 # Cabo for Kakoune
+# Author: Eric Moore <esmoore.com>
 
 # Based on: 
 # Ashen for Kakoune
@@ -59,7 +60,7 @@ set-face global list      "%opt{green_light}"
 # Built-in UI
 set-face global Default            "%opt{text},%opt{background}"
 set-face global PrimarySelection      ",%opt{g_8}+g"
-set-face global SecondarySelection    ",%opt{g_9}+g"
+set-face global SecondarySelection    ",%opt{g_10}+g"
 set-face global PrimaryCursor "%opt{background},%opt{lapis}+b"
 set-face global SecondaryCursor "%opt{background},%opt{lapis_light}"
 set-face global PrimaryCursorEol   PrimaryCursor
