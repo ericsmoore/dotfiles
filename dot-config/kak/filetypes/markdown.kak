@@ -40,6 +40,7 @@ hook global WinSetOption filetype=(markdown) %{
     set-option window comment_block_end '-->'
 
     map window user c ":markdown_toggle_checkbox<ret>" -docstring "toggle checkbox"
+    map window user = "<a-i>p:format-selections<ret>"
 
     hook window InsertIdle .* %{ update-modeline-buf-word-count }
     hook window NormalIdle .* %{ update-modeline-buf-word-count }
