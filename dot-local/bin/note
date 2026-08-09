@@ -1,23 +1,29 @@
 #!/usr/bin/env bash
 
 notesdir="$HOME/notes"
+template="$notesdir/daily/template.md"
 date=$(date +%F)
 
-if (( $# > 0)); then
-    date=$(date -d "$*" +%F)
+if (( $# > 0 )); then
+    if ! date=$(date -d "$*" +%F); then
+        exit 1
+    fi
 fi
+dailynote="$notesdir/daily/$date.md"
 
 workingdir=$PWD
 
 cd "$notesdir"
 
-if [[ -f "$notesdir/daily/$date.md" ]]; then
-    kak "daily/$date.md"
+if [[ -f "$dailynote" ]]; then
+    kak "$dailynote"
 else
     while true; do
-        read -p "No note on $date. Make one? [y/n]: " yn
+        read -n 1 -p "No note on $date. Make one? [y/n]: " yn
+        echo
         case $yn in
-            [Yy]*) kak "daily/$date.md"; break ;;
+            [Yy]*) kak "$dailynote" -e "execute-keys '!cat $template<ret>'"
+            break ;;
             [Nn]*) exit 1 ;;
         esac
     done
