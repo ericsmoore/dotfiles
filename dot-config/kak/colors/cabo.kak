@@ -15,8 +15,10 @@ declare-option str green_dark "rgb:015240"
 declare-option str greener "rgb:028050"
 declare-option str lapis "rgb:214D70"
 declare-option str lapis_light "rgb:557FA1"
-declare-option str rust "rgb:702121"
-declare-option str warning_yellow "rgb:d49215"
+# declare-option str rust "rgb:702121"
+
+declare-option str error "rgb:B33535"
+declare-option str warning "rgb:E39C17"
 
 declare-option str background "rgb:f5f5f5"
 
@@ -43,7 +45,8 @@ set-face global string        "%opt{green_light}"
 set-face global keyword       "%opt{green_dark}"
 set-face global operator      "%opt{greener}"
 set-face global attribute     "%opt{g_2}+i"
-set-face global comment       "%opt{g_4}+i"
+# comment is too low constrast
+set-face global comment       "%opt{g_6}+i"
 set-face global documentation comment
 set-face global meta          "%opt{green_dark}"
 set-face global builtin       function
@@ -73,37 +76,37 @@ set-face global MenuBackground     "%opt{g_2},%opt{g_9}"
 set-face global MenuInfo           "%opt{text},%opt{g_9}"
 set-face global Information        MenuInfo
 set-face global InlineInformation  "%opt{g_6}+i"
-set-face global Error              "%opt{rust},%opt{background}"
-set-face global DiagnosticError    ",,%opt{rust}+c"
-set-face global DiagnosticWarning  ",,%opt{warning_yellow}+c"
+set-face global Error              "%opt{error},%opt{background}"
+set-face global DiagnosticError    ",,%opt{error}+c"
+set-face global DiagnosticWarning  ",,%opt{warning}+c"
 set-face global StatusLine         "%opt{g_2},%opt{g_9}"
 set-face global StatusLineMode     "%opt{greener}+b"
 set-face global StatusLineInfo     "%opt{green_dark}"
 set-face global StatusLineValue    "%opt{lapis}"
 set-face global StatusCursor       "%opt{background},%opt{g_3}+b"
 set-face global Prompt             "%opt{greener}"
-set-face global MatchingChar       "%opt{warning_yellow}+uf"
+set-face global MatchingChar       "%opt{warning}+uf"
 set-face global BufferPadding      LineNumbers
 set-face global Whitespace         "%opt{g_7}+f"
 set-face global WrapMarker         "%opt{g_7}+f"
 
-# kak-lsp
-set-face global InlayHint "%opt{g_5},%opt{g_12}+i"
-set-face global parameter "@ts_variable_paramter"
-set-face global enum "@ts_type_enum_variant"
-set-face global InlayDiagnosticError Error
-set-face global InlayDiagnosticWarning "%opt{warning_yellow}"
+#### kak-lsp ####
+set-face global InlayDiagnosticError "%opt{error}"
+set-face global InlayDiagnosticWarning "%opt{warning}"
 set-face global InlayDiagnosticInfo "%opt{g_2}"
 set-face global InlayDiagnosticHint "%opt{g_4}"
-set-face global LineFlagError "%opt{lapis}"
-set-face global LineFlagWarning "%opt{warning_yellow}"
+set-face global InlayHint "%opt{g_5},%opt{g_12}+i"
+set-face global LineFlagError "%opt{error}"
+set-face global LineFlagWarning "%opt{warning}"
 set-face global LineFlagInfo "%opt{g_2}"
 set-face global LineFlagHint "%opt{g_4}"
-set-face global DiagnosticError ",,%opt{rust}+c"
-set-face global DiagnosticWarning ",,%opt{warning_yellow}+c"
+# curly underline is unsupported in some terminals
+set-face global DiagnosticError ",,%opt{error}+c"
+set-face global DiagnosticWarning ",,%opt{warning}+c"
 set-face global DiagnosticInfo ",,%opt{g_2}+c"
 set-face global DiagnosticHint ",,%opt{g_4}+c"
-# Infobox faces
+
+## Infobox faces ##
 set-face global InfoDefault Information
 set-face global InfoBlock block
 set-face global InfoBlockQuote block
@@ -113,7 +116,12 @@ set-face global InfoLink link
 set-face global InfoLinkMono header
 set-face global InfoMono mono
 set-face global InfoRule comment
-set-face global InfoDiagnosticError InlayDiagnosticError
+
+# red text, bright background
+set-face global InfoDiagnosticError "%opt{error},%opt{background}"
+# default text, bright background
+set-face global InfoDiagnosticWarning ",%opt{background}"
+# same as inlay, hints and info g_2 and g_4 respectively
 set-face global InfoDiagnosticHint InlayDiagnosticHint
 set-face global InfoDiagnosticInformation InlayDiagnosticInfo
-set-face global InfoDiagnosticWarning InlayDiagnosticWarning
+
