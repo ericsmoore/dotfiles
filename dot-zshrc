@@ -30,4 +30,7 @@ export EZA_CONFIG_DIR="$HOME/.config/eza/"
 
 source "$HOME/.config/shell/aliases.sh" 
 
+my_chpwd_hook() ls
+chpwd_functions+=( my_chpwd_hook )
+
 eval "$(zoxide init zsh --cmd cd)"

@@ -2,6 +2,8 @@ alias ls='eza -X --no-user'
 alias lsa='ls -Ga'
 alias l='ls -l'
 alias la='ls -la'
+alias lt='ls -l --tree'
+alias lg='ls -l --git-repos'
 
 alias gst='git status'
 alias gs='git status -s'

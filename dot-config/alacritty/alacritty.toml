@@ -3,6 +3,7 @@ dimensions.columns = 90
 dimensions.lines = 35
 padding.x = 8
 padding.y = 8
+dynamic_padding = true
 option_as_alt = "Both"
 
 [mouse]
@@ -12,7 +13,7 @@ hide_when_typing = true
 save_to_clipboard = true
 
 [font]
-size = 26
+size = 24
 offset.x = 3
 offset.y = 3
 
@@ -37,5 +38,6 @@ import = ["~/.config/alacritty/ashen.toml"]
 [keyboard]
 bindings = [
 { key = "[", mods = "Command", action = "SelectPreviousTab" },
-{ key = "]", mods = "Command", action = "SelectNextTab",}
+{ key = "]", mods = "Command", action = "SelectNextTab",},
+{ key = "Enter", mods = "Command", action = "ToggleFullscreen",}
 ]
