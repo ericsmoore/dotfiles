@@ -3,7 +3,6 @@ dimensions.columns = 90
 dimensions.lines = 35
 padding.x = 8
 padding.y = 8
-dynamic_padding = true
 option_as_alt = "Both"
 
 [mouse]
@@ -13,9 +12,9 @@ hide_when_typing = true
 save_to_clipboard = true
 
 [font]
-size = 24
+size = 25.5
 offset.x = 3
-offset.y = 3
+offset.y = 8
 
 [font.normal]
 family = "CommitMono"
