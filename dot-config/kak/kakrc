@@ -5,6 +5,7 @@ source "%val{config}/plugins/jump.kak"
 
 source "%val{config}/utils/clipboard.kak"
 source "%val{config}/utils/windowing.kak"
+source "%val{config}/utils/notes.kak"
 # TODO: helix inspired match mode
 
 evaluate-commands %sh{
@@ -76,16 +77,6 @@ map global normal <tab> "<esc>:pick-buffers<ret>"
 # but I don't think there's a GOTO (goto-extend) mode..? 
 map global goto w "<esc>:enter_jump_mode_with_replace_select_mode<ret>" -docstring "jump word"
 map global goto W "<esc>:enter_jump_mode_with_extend_select_mode<ret>"  -docstring "jump word"
-
-# todo: load daily template if note isn't existing
-# use an interactive menu for accessing date tool strings
-# maybe integrate with notes too?
-declare-user-mode notes
-declare-option str notes_dir %sh{echo "$HOME/notes"}
-map global user n "<esc>:enter-user-mode notes<ret>" -docstring "notes"
-map global notes n ":edit %opt{notes_dir}/daily/%sh{date +%F}.md<ret>" -docstring "daily"
-map global notes t ":edit %opt{notes_dir}/todo.md<ret>" -docstring "todo"
-map global notes c ":cd %opt{notes_dir}<ret>" -docstring "cd to notes dir"
 
 define-command alacritty-window %{
     nop %sh{
