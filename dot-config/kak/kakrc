@@ -65,7 +65,6 @@ define-command -hidden dumb-comment %{
 
 map global normal <esc> ";,"
 map global normal <'>   "<a-;>"
-map global normal <ret> ":w<ret>"
 map global normal '#' ":dumb-comment<ret>"
 map global normal  =    ":format-selections<ret>"
 
