@@ -12,20 +12,20 @@ hide_when_typing = true
 save_to_clipboard = true
 
 [font]
-size = 25.5
+size = 24.5
 offset.x = 3
-offset.y = 8
+offset.y = 15
 
 [font.normal]
-family = "CommitMono"
+family = "Input"
 style = "Regular"
 
 [font.bold]
-family = "CommitMono"
+family = "Input"
 style = "Bold"
 
 [font.italic]
-family = "CommitMono"
+family = "Input"
 style = "Italic"
 
 [scrolling]
