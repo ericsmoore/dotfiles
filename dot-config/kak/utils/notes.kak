@@ -1,9 +1,6 @@
-# todo: load daily template if note isn't existing
-# use an interactive menu for accessing date tool strings
-# maybe integrate with notes too?
 declare-option str notes_dir %sh{echo "$HOME/notes"}
 declare-option str dnotes_dir "%opt{notes_dir}/daily"
-declare-option str dnotes_temp  "%opt{dnotes_dir}/template.md"
+declare-option str dnotes_temp  "%opt{notes_dir}/templates/dnote.md"
 
 declare-user-mode notes
 map global user n "<esc>:enter-user-mode notes<ret>" -docstring "notes"

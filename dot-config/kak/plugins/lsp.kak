@@ -1,5 +1,6 @@
 # --- lsp ---
 eval %sh{kak-lsp}
+set-option global lsp_snippet_support false
 lsp-enable
 
 set-option global modelinefmt "%opt{lsp_modeline} %opt{modelinefmt}"
@@ -9,8 +10,6 @@ map global user l ':enter-user-mode lsp<ret>' -docstring 'LSP mode'
 map global goto d <esc>:lsp-definition<ret>      -docstring 'LSP definition'
 map global goto r <esc>:lsp-references<ret>      -docstring 'LSP references'
 map global goto y <esc>:lsp-type-definition<ret> -docstring 'LSP type definition'
-
-map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
 
 map global object a     '<a-semicolon>lsp-object<ret>'                                          -docstring 'LSP any symbol'
 map global object <a-a> '<a-semicolon>lsp-object<ret>'                                          -docstring 'LSP any symbol'

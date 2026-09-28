@@ -15,3 +15,9 @@ define-command newtab -params .. -command-completion \
     "%opt{windowing_module}-terminal-window" \
     kak -c %val{session} -e "%arg{@}"
 }
+
+define-command alacritty-terminal-window %{
+    nop %sh{
+        alacritty msg create-window -e "$(command -v kak)" -c $kak_session
+    }
+}
