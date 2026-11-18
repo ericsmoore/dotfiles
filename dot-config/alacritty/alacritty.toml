@@ -12,20 +12,20 @@ hide_when_typing = true
 save_to_clipboard = true
 
 [font]
-size = 24.5
-offset.x = 3
-offset.y = 15
+size = 20
+offset.x = 2
+offset.y = 2
 
 [font.normal]
-family = "Input"
+family = "Input Mono"
 style = "Regular"
 
 [font.bold]
-family = "Input"
+family = "Input Mono"
 style = "Bold"
 
 [font.italic]
-family = "Input"
+family = "Input Mono"
 style = "Italic"
 
 [scrolling]
