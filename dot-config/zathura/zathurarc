@@ -27,5 +27,3 @@ set index-active-bg "#d5d5d5"
 set index-active-fg "#121212"
 set render-loading-bg "#121212"
 set render-loading-fg "#d5d5d5"
-
-set recolor "true"
