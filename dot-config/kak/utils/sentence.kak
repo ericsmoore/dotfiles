@@ -7,7 +7,7 @@
 #================================================
 declare-option str surr_object_mode ''
 
-hook global NormalKey (\[|\]|\{|\}|<a-\[>|<a-\]>|<a-\{>|<a-\}>) %{
+hook global NormalKey (\[|\]|\{|\}|<a-\[>|<a-\]>|<a-\{>|<a-\}>|<a-i>|<a-a>) %{
     set-option global surr_object_mode %val{hook_param}
 }
 
@@ -17,7 +17,7 @@ define-command -params 1 sentence %@
         keys="$mode""s"
 
         case "$mode" in
-            '['|'{'|'<a-[>'|'<a-{')
+            '['|'{'|'<a-[>'|'<a-{>'|'<a-i>'|'<a-a>')
                 printf "execute-keys '%s'" "$keys"
                 exit
         esac

@@ -1,4 +1,5 @@
 # --- lsp ---
+# set-option global lsp_debug true
 eval %sh{kak-lsp}
 set-option global lsp_snippet_support false
 lsp-enable
